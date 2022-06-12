@@ -2,6 +2,8 @@ from abc import ABC, abstractmethod
 class QueryMapsApi(ABC):
     """
     generic / abstract class to query maps api services
+    any maps api services inherit QueryMapsApi and implement it's functions 
+    - custom implementation - according to maps api services 
     """
 
     def set_search_query(self, query):

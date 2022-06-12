@@ -18,3 +18,28 @@ class TestQueryGoogleMaps(unittest.TestCase):
         google_maps = QueryGoogleMaps()
         result = google_maps.set_search_query("")
         self.assertEqual(result, "search query can't be empty")
+
+    def test_send_query_request(self):
+        """
+        test with wrong key
+        """
+        google_maps = QueryGoogleMaps()
+        google_maps.key = self.wrong_key
+        google_maps.set_search_query("5 Av. Anatole, Paris, Champ de Mars")
+
+        response = google_maps.send_query_request()
+        self.assertEqual(response.get("status"), "REQUEST_DENIED")
+        self.assertEqual(response.get("error_message"),
+                         "The provided API key is invalid. ")
+        self.assertFalse(response.get("results"))
+
+        """
+        test with empty address 
+        """
+        google_maps.key = self.key
+        google_maps.search_query = ""
+        response = google_maps.send_query_request()
+        self.assertEqual(response.get("status"), "INVALID_REQUEST")
+        self.assertEqual(response.get("error_message"),
+                         "Invalid request. Missing the 'address', 'components', 'latlng' or 'place_id' parameter.")
+        self.assertFalse(response.get("results"))

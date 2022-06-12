@@ -1,4 +1,4 @@
-from decouple import config 
+from decouple import config
 from maps.google_maps_api import QueryGoogleMaps
 import unittest
 

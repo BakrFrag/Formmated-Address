@@ -1,4 +1,4 @@
-from query_api.maps.query_google_maps import QueryGoogleMaps
+from maps.google_maps_api import QueryGoogleMaps
 import sys
 
 
@@ -9,7 +9,7 @@ class ArgumentParser(object):
         self.helper_text = """
         -h for displaying helper text 
         -t for parse address to search in quote
-        example -t structured_address.py “5 Av. Anatole, Paris, Champ de Mars"
+        example python structured_address.py -t “5 Av. Anatole, Paris, Champ de Mars"
         """
         self.invalid_arguments_flags = {
             "helper_message": self.helper_text, "status": "INVALID_ARGUMENTS_FLAGS"}
